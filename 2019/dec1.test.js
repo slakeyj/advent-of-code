@@ -1,4 +1,4 @@
-const sumOfFuelRequirements = require('./dec1');
+const { sumOfFuelRequirements, findFuelRequirementsForAll } = require('./dec1');
 
 const input = [
   74767,
@@ -106,5 +106,8 @@ const input = [
 describe('sumOfFuelRequirements', () => {
   it('returns the sum of all fuel requirements for all modules', () => {
     expect(sumOfFuelRequirements(input)).toEqual(3282935);
+  });
+  it('returns the sum of all fuel requirements for all modules and their fuel requirements', () => {
+    expect(findFuelRequirementsForAll(input)).toEqual(0);
   });
 });
