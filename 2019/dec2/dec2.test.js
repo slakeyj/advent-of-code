@@ -1,8 +1,8 @@
-const restoreGravityAssist = require('./dec2');
+const { restoreGravityAssist, findCorrectOutput } = require('./dec2');
 const input = [
   1,
-  12,
-  2,
+  0,
+  0,
   3,
   1,
   1,
@@ -199,6 +199,12 @@ const testInput = [1, 1, 1, 4, 99, 5, 6, 0, 99];
 
 describe('restoreGravityAssist', () => {
   it('returns the changed data', () => {
-    expect(restoreGravityAssist(input)).toEqual(0);
+    expect(restoreGravityAssist(input, 12, 2)).toEqual(4023471);
+  });
+});
+
+describe('findCorrectOutput', () => {
+  it('returns the verb and noun multiplied by 100 that equals the given output', () => {
+    expect(findCorrectOutput(input, 19690720)).toEqual(0);
   });
 });

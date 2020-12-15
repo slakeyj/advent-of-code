@@ -7,23 +7,37 @@ position 3: indicates index of where output is to be stored
 
 */
 
-const restoreGravityAssist = input => {
-  for (let i = 0; i < input.length; i++) {
+const restoreGravityAssist = (input, noun, verb) => {
+  let newInput = [...input];
+  newInput[1] = noun;
+  newInput[2] = verb;
+  for (let i = 0; i < newInput.length; i++) {
     if (input[i] === 99) {
       break;
     }
-    let firstInput = input[input[i + 1]];
-    let secondInput = input[input[i + 2]];
-    let outputPosition = input[i + 3];
-    if (input[i] === 1) {
-      input[outputPosition] = firstInput + secondInput;
+    let firstInput = newInput[newInput[i + 1]];
+    let secondInput = newInput[newInput[i + 2]];
+    let outputPosition = newInput[i + 3];
+    if (newInput[i] === 1) {
+      newInput[outputPosition] = firstInput + secondInput;
     }
-    if (input[i] === 2) {
-      input[outputPosition] = firstInput * secondInput;
+    if (newInput[i] === 2) {
+      newInput[outputPosition] = firstInput * secondInput;
     }
     i += 3;
   }
-  return input[0];
+  return newInput[0];
 };
 
-module.exports = restoreGravityAssist;
+const findCorrectOutput = (input, output) => {
+  let newInput = [...input];
+  for (let noun = 0; noun <= 99; noun++) {
+    for (let verb = 0; verb <= 99; verb++) {
+      if (restoreGravityAssist(newInput, noun, verb) === output) {
+        return 100 * noun + verb;
+      }
+    }
+  }
+};
+
+module.exports = { restoreGravityAssist, findCorrectOutput };
